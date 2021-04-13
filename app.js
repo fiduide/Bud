@@ -27,7 +27,7 @@ client.on('message', (message) =>{
             //TODO RAJOUTER UNE BDD AVEC COLUMN JOUEUR | WIN | PERDU ET AFFICHER LE SCORE
         }else {
             message.channel.send(" ***tente de vous renvoyez la balle et fait un smash***");
-            message.channel.reply("malheureusement, vous avez perdu le match...");
+            message.reply("malheureusement, vous avez perdu le match...");
         }
     }
 
