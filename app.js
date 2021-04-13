@@ -5,9 +5,9 @@ const client = new Discord.Client();
 let mysql = require('mysql');
 
 let connection = mysql.createConnection({
-    host: 'cappedorian.fr',
+    host: '91.234.195.123',
     user: 'c1453962c_root',
-    password: 'fiduide1611',
+    password: 'fiduide161100',
     database: 'c1453962c_discord_bud'
 });
 
