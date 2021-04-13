@@ -42,12 +42,13 @@ client.on('message', (message) => {
             message.reply("Vous gagnez le match !");
 
             let sql = 'SELECT * FROM score_ping WHERE idPlayer = ?';
+            console.log(message.member.id);
             connection.query(sql, [message.member.id], (error, results, fields) => {
                 if (error) {
                     return console.error(error.message);
                 }
                 if (results == nul) {
-                    let sql2 = 'INSERT INTO score_ping(idPlayer,scorePlayer, scoreRobot) VALUES(' + message.member.id + ', 1, 0)';
+                    let sql2 = 'INSERT INTO score_ping(idPlayer,scorePlayer,scoreRobot) VALUES(' + message.member.id + ', 1, 0)';
                     connection.query(sql2);
                 } else {
                     let sqlInsert = 'UPDATE todos SET scorePlayer = scorePlayer + 1 WHERE idPlayer = ?';
