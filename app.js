@@ -22,12 +22,12 @@ client.on('message', (message) =>{
         var pingpong = random.int(0,1);
         if(pingpong == 0) {
             message.channel.send("***tente de vous renvoyez la balle***");
-            message.channel.send("échec de la procédure... renvoi impossible...");
+            message.channel.send("*échec de la procédure... renvoi impossible...*");
             message.reply("Vous gagnez le match !");
             //TODO RAJOUTER UNE BDD AVEC COLUMN JOUEUR | WIN | PERDU ET AFFICHER LE SCORE
         }else {
             message.channel.send(" ***tente de vous renvoyez la balle et fait un smash***");
-            message.channel.send("malheureusement, vous avez perdu le match...");
+            message.channel.reply("malheureusement, vous avez perdu le match...");
         }
     }
 
