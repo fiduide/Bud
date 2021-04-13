@@ -26,7 +26,6 @@ client.on('message', (message) =>{
             message.reply("Vous gagnez le match !");
             //TODO RAJOUTER UNE BDD AVEC COLUMN JOUEUR | WIN | PERDU ET AFFICHER LE SCORE
         }else {
-            message.reply('***Dorian 2.0 tente de vous renvoyez la balle et fait un smash***, malheureusement, vous avez perdu le set...');
             message.channel.send(" ***tente de vous renvoyez la balle et fait un smash***");
             message.channel.send("malheureusement, vous avez perdu le match...");
         }
