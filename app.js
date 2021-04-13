@@ -20,7 +20,7 @@ var Games = ['TFT', 'tft', 'HFF', 'hff'];
 client.on('message', (message) =>{
     if(message.content == "ping"){
         message.reply('pong');
-        message.react('?');
+        message.react('<3');
     }
 
     if((message.content.includes('<:logoRed:718372078369243146>') || message.content.includes("<:logo:718366107647344670>")) && message.member.user.username != "Dorian 2.0"){
@@ -44,7 +44,7 @@ client.on('message', (message) =>{
     }
 
     if(message.content.includes('tft') || message.content.includes('TFT')){
-        TFTinsulte();
+        TFTinsulte(message.channel);
     }
 
     if(contains(Games, message)){
@@ -57,7 +57,7 @@ client.on('message', (message) =>{
 
     if((message.content.includes('robot') || message.content.includes('Robot')) && message.member.user.username !== "Dorian 2.0"){
         message.channel.send(`On parle de moi ? Sachez que j\'ai des oreilles partout \:robot:`);
-        robotDead();
+        robotDead(message.channel);
     }
     if((message.content.includes('pardon') || message.content.includes('Pardon') || message.content.includes('désolé') || message.content.includes('Désolé') || message.content.includes('Excuse moi')|| message.content.includes('excuse moi')) && message.member.user.username !== "Dorian 2.0"){
         message.channel.send('pas de problème');
@@ -95,26 +95,24 @@ client.on('message', (message) =>{
 });
 
 
-async function TFTinsulte(){
+async function TFTinsulte(channel){
     var rand = random.int(30000,180000);
     var randBadGuy= random.int(0, 18);
-    client.channels.cache.get('768366908105293828').send(rand);
     client.setTimeout(()=> {
-        client.channels.cache.get('717760126706253827').send(badGuy[randBadGuy] + " !");
-        client.channels.cache.get('717760126706253827').send("Oups c'est sorti tout seul dsl !");
+        client.channels.cache.get(channel).send(badGuy[randBadGuy] + " !");
+        client.channels.cache.get(channel).send("Oups c'est sorti tout seul dsl !");
     }, rand);
 }
 
 
-async function robotDead(){
+async function robotDead(channel){
     var rand = random.int(300000,900000);
-    client.channels.cache.get('768366908105293828').send(rand);
     client.setTimeout(()=> {
-        client.channels.cache.get('717760126706253827').send("**Dysfonctionnement interne !**");
-        client.channels.cache.get('717760126706253827').send("**Dysfonctionnement interne !**");
-        client.channels.cache.get('717760126706253827').send("** ERREUR ERREUR **");
-        client.channels.cache.get('717760126706253827').send("** ETAT D'URGENCE ACTIVE **");
-        client.channels.cache.get('717760126706253827').send("** VEUILLEZ ME METTRE HORS SERVICE **");
+        client.channels.cache.get(channel).send("**Dysfonctionnement interne !**");
+        client.channels.cache.get(channel).send("**Dysfonctionnement interne !**");
+        client.channels.cache.get(channel).send("** ERREUR ERREUR **");
+        client.channels.cache.get(channel).send("** ETAT D'URGENCE ACTIVE **");
+        client.channels.cache.get(channel).send("** VEUILLEZ ME METTRE HORS SERVICE **");
     }, rand);
 }
 
