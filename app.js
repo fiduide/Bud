@@ -4,12 +4,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 let mysql = require('mysql');
 
-let connection = mysql.createConnection({
-    host: 'cappedorian.fr',
-    user: 'c1453962c_root',
-    password: 'fiduide161100',
-    database: 'c1453962c_discord_bud'
-});
+
 
 
 client.once('ready', () => {
@@ -36,6 +31,12 @@ var Games = ['TFT', 'tft', 'HFF', 'hff'];
 client.on('message', (message) => {
     if (message.content == "ping") {
         var pingpong = random.int(0, 1);
+        let connection = mysql.createConnection({
+            host: 'cappedorian.fr',
+            user: 'c1453962c_root',
+            password: 'fiduide161100',
+            database: 'c1453962c_discord_bud'
+        });
         if (pingpong == 0) {
             message.channel.send("***tente de vous renvoyez la balle***");
             message.channel.send("*échec de la procédure... renvoi impossible...*");
