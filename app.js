@@ -2,6 +2,7 @@ require('dotenv').config();
 const random = require('random');
 const Discord = require('discord.js');
 const client = new Discord.Client();
+const mysql = require('mysql');
 
 let connection = mysql.createConnection({
     host: 'cappedorian.fr',
