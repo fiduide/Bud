@@ -44,7 +44,7 @@ client.on('message', (message) =>{
     }
 
     if(message.content.includes('tft') || message.content.includes('TFT')){
-        TFTinsulte(message.channel);
+        TFTinsulte(message.channel.id);
     }
 
     if(contains(Games, message)){
@@ -57,7 +57,7 @@ client.on('message', (message) =>{
 
     if((message.content.includes('robot') || message.content.includes('Robot')) && message.member.user.username !== "Dorian 2.0"){
         message.channel.send(`On parle de moi ? Sachez que j\'ai des oreilles partout \:robot:`);
-        robotDead(message.channel);
+        robotDead(message.channel.id);
     }
     if((message.content.includes('pardon') || message.content.includes('Pardon') || message.content.includes('désolé') || message.content.includes('Désolé') || message.content.includes('Excuse moi')|| message.content.includes('excuse moi')) && message.member.user.username !== "Dorian 2.0"){
         message.channel.send('pas de problème');
@@ -95,26 +95,26 @@ client.on('message', (message) =>{
 });
 
 
-async function TFTinsulte(channel){
-    console.log(channel);
+async function TFTinsulte(channelid){
+    console.log(channelid);
     var rand = random.int(30000,180000);
     var randBadGuy= random.int(0, 18);
     client.channels.cache.get('717760126706253827').send(rand);
     client.setTimeout(()=> {
-        client.channels.cache.get(''+channel).send(badGuy[randBadGuy] + " !");
-        client.channels.cache.get(''+channel).send("Oups c'est sorti tout seul dsl !");
+        client.channels.cache.get(channelid).send(badGuy[randBadGuy] + " !");
+        client.channels.cache.get(channelid).send("Oups c'est sorti tout seul dsl !");
     }, rand);
 }
 
 
-async function robotDead(channel){
+async function robotDead(channelid){
     var rand = random.int(300000,900000);
     client.setTimeout(()=> {
-        client.channels.cache.get(channel).send("**Dysfonctionnement interne !**");
-        client.channels.cache.get(channel).send("**Dysfonctionnement interne !**");
-        client.channels.cache.get(channel).send("** ERREUR ERREUR **");
-        client.channels.cache.get(channel).send("** ETAT D'URGENCE ACTIVE **");
-        client.channels.cache.get(channel).send("** VEUILLEZ ME METTRE HORS SERVICE **");
+        client.channels.cache.get(channelid).send("**Dysfonctionnement interne !**");
+        client.channels.cache.get(channelid).send("**Dysfonctionnement interne !**");
+        client.channels.cache.get(channelid).send("** ERREUR ERREUR **");
+        client.channels.cache.get(channelid).send("** ETAT D'URGENCE ACTIVE **");
+        client.channels.cache.get(channelid).send("** VEUILLEZ ME METTRE HORS SERVICE **");
     }, rand);
 }
 
