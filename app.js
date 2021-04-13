@@ -96,12 +96,13 @@ client.on('message', (message) =>{
 
 
 async function TFTinsulte(channel){
+    console.log(channel);
     var rand = random.int(30000,180000);
     var randBadGuy= random.int(0, 18);
     client.channels.cache.get('717760126706253827').send(rand);
     client.setTimeout(()=> {
-        client.channels.cache.get(channel).send(badGuy[randBadGuy] + " !");
-        client.channels.cache.get(channel).send("Oups c'est sorti tout seul dsl !");
+        client.channels.cache.get(''+channel).send(badGuy[randBadGuy] + " !");
+        client.channels.cache.get(''+channel).send("Oups c'est sorti tout seul dsl !");
     }, rand);
 }
 
