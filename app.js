@@ -21,13 +21,15 @@ client.on('message', (message) =>{
     if(message.content == "ping"){
         var pingpong = random.int(0,1);
         if(pingpong == 0) {
-            message.reply('*Dorian 2.0 tente de vous renvoyez la balle* échec de la procédure..., vous avez gagné le set !');
+            message.channel.send("*tente de vous renvoyez la balle*");
+            message.channel.send("échec de la procédure... renvoi impossible...");
+            message.reply("Vous gagnez le match !");
             //TODO RAJOUTER UNE BDD AVEC COLUMN JOUEUR | WIN | PERDU ET AFFICHER LE SCORE
         }else {
             message.reply('*Dorian 2.0 tente de vous renvoyez la balle et fait un smash*, malheureusement, vous avez perdu le set...');
+            message.channel.send("*tente de vous renvoyez la balle et fait un smash*");
+            message.channel.send("malheureusement, vous avez perdu le match...");
         }
-        message.reply('pong');
-        
     }
 
     if((message.content.includes('<:logoRed:718372078369243146>') || message.content.includes("<:logo:718366107647344670>")) && message.member.user.username != "Dorian 2.0"){
