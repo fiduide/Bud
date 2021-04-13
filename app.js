@@ -2,7 +2,7 @@ require('dotenv').config();
 const random = require('random');
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const mysql = require('mysql');
+let mysql = require('mysql');
 
 let connection = mysql.createConnection({
     host: 'cappedorian.fr',
@@ -30,7 +30,7 @@ client.once('ready', () => {
 var TabHello = ['Salut', 'Hey', 'hey', "salut", "bonjour", "Bonjour"];
 var TabHow = ['ça va ?', 'Ca va ?', 'Comment ça va', 'comment ça va', 'Vous allez bien ?', 'vous allez bien ?', 'tu vas bien ?', 'Tu vas bien ?', 'Ca a été votre week-end'
     , 'ça a été votre week-end', 'bien et toi', 'Ca a été votre weekend', 'ça a été votre weekend', 'Ca va et toi', 'ca va et toi', 'ça va et toi', ' ben écoutes ca va et toi', 'je vais bien et toi'];
-var badGuy = ['fdp', 'ftg', 'pute', 'connasse', 'batard', ' merde ', 'stfu', 'connard', 'enculé', 'enfoiré', 'ntm', 'nique ta mère', ' nique', 'sale con', 'abruti', ' con ', 'salope', 'salaud', 'salop', 'fuck', 'ta gueule', 'merde', 'putain'];
+var badGuy = ['fdp', 'ftg', 'pute', 'connasse', 'batard', ' merde ', 'stfu', 'connard', 'enculé', 'enfoiré', 'ntm', 'nique ta mère', ' nique', 'sale con', 'abruti', 'con', 'salope', 'salaud', 'salop', 'fuck', 'ta gueule', 'merde', 'putain'];
 var Games = ['TFT', 'tft', 'HFF', 'hff'];
 
 client.on('message', (message) => {
