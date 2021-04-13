@@ -7,7 +7,7 @@ let mysql = require('mysql');
 let connection = mysql.createConnection({
     host: 'cappedorian.fr',
     user: 'c1453962c_root',
-    password: 'fiduide161100',
+    password: 'fiduide1611',
     database: 'c1453962c_discord_bud'
 });
 
