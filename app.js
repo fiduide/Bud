@@ -20,13 +20,14 @@ var Games = ['TFT', 'tft', 'HFF', 'hff'];
 client.on('message', (message) =>{
     if(message.content == "ping"){
         message.reply('pong');
+        message.react('?');
     }
 
-    else if((message.content.includes('<:logoRed:718372078369243146>') || message.content.includes("<:logo:718366107647344670>")) && message.member.user.username != "Dorian 2.0"){
+    if((message.content.includes('<:logoRed:718372078369243146>') || message.content.includes("<:logo:718366107647344670>")) && message.member.user.username != "Dorian 2.0"){
         message.channel.send("<:logoRed:718372078369243146> <:logo:718366107647344670>  <:logoRed:718372078369243146> <:logo:718366107647344670>");
     }
 
-    else if (message.content === 'rip' || message.content === 'RIP') {
+    if (message.content === 'rip' || message.content === 'RIP') {
         // Create the attachment using MessageAttachment
         const attachment = new Discord.MessageAttachment('https://i.imgur.com/w3duR07.png');
         // Send the attachment in the message channel
@@ -34,35 +35,35 @@ client.on('message', (message) =>{
     }
 
 
-    else if(message.content.includes('mauvaise nouvelle') || message.content.includes('Mauvaise nouvelle')){
+    if(message.content.includes('mauvaise nouvelle') || message.content.includes('Mauvaise nouvelle')){
         message.channel.send(`j'espère que ce n'est pas trop grave \:worried:`);
     }
 
-    else if(contains(badGuy, message)){
+    if(contains(badGuy, message)){
         message.channel.send(`Les gros mots c'est MAL !`);
     }
 
-    else if(message.content.includes('tft') || message.content.includes('TFT')){
+    if(message.content.includes('tft') || message.content.includes('TFT')){
         TFTinsulte();
     }
 
-    else if(contains(Games, message)){
+    if(contains(Games, message)){
         message.channel.send('HOP HOP HOP On se reconcentre tout de suite là !')
     }
 
-    else if(contains(TabHello, message)){
+    if(contains(TabHello, message)){
         message.channel.send('Salut :D')
     }
 
-    else if((message.content.includes('robot') || message.content.includes('Robot')) && message.member.user.username !== "Dorian 2.0"){
+    if((message.content.includes('robot') || message.content.includes('Robot')) && message.member.user.username !== "Dorian 2.0"){
         message.channel.send(`On parle de moi ? Sachez que j\'ai des oreilles partout \:robot:`);
         robotDead();
     }
-    else if((message.content.includes('pardon') || message.content.includes('Pardon') || message.content.includes('désolé') || message.content.includes('Désolé') || message.content.includes('Excuse moi')|| message.content.includes('excuse moi')) && message.member.user.username !== "Dorian 2.0"){
+    if((message.content.includes('pardon') || message.content.includes('Pardon') || message.content.includes('désolé') || message.content.includes('Désolé') || message.content.includes('Excuse moi')|| message.content.includes('excuse moi')) && message.member.user.username !== "Dorian 2.0"){
         message.channel.send('pas de problème');
     }
 
-    else if(message.content == "!rand"){
+    if(message.content == "!rand"){
         var robot = random.int(0,100)
         var player = random.int(0,100)
         var user = message.author.id;
@@ -125,6 +126,7 @@ client.setInterval(()=>{
     var now = new Date();
     hours = now.getHours();
     min = now.getMinutes();
+}, 60000);
 
     if(hours == 9 && min == 0){
         client.channels.cache.get('717760126706253827').send("@here ça commence ! Passez une bonne journée !");
@@ -157,7 +159,7 @@ client.setInterval(()=>{
     else if (hours == 18 && min == 0){
         client.channels.cache.get('717760126706253827').send("FINI !!!!");
     }
-}, 60000);
+
 
 function contains(tab, phrase){
     for (var i = 0; i < tab.length; i++) {
