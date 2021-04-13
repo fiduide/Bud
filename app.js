@@ -4,22 +4,18 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 let mysql = require('mysql');
 
-
+let connection = mysql.createConnection({
+    host: 'cappedorian.fr',
+    user: 'c1453962c_root',
+    password: 'fiduide161100',
+    database: 'c1453962c_discord_bud'
+});
 
 
 client.once('ready', () => {
     console.log('Ready !')
     client.user.setActivity("En cours de développement !");
     client.channels.cache.get('768366908105293828').send("Bot lancé ! ");
-
-
-    connection.connect(function (err) {
-        if (err) {
-            return console.error('error sur => [CONNEXION BDD]: ' + err.message);
-        }
-
-        console.log('Connected to the MySQL server.');
-    });
 });
 
 var TabHello = ['Salut', 'Hey', 'hey', "salut", "bonjour", "Bonjour"];
@@ -30,13 +26,8 @@ var Games = ['TFT', 'tft', 'HFF', 'hff'];
 
 client.on('message', (message) => {
     if (message.content == "ping") {
+        connectSQL();
         var pingpong = random.int(0, 1);
-        let connection = mysql.createConnection({
-            host: 'cappedorian.fr',
-            user: 'c1453962c_root',
-            password: 'fiduide161100',
-            database: 'c1453962c_discord_bud'
-        });
         if (pingpong == 0) {
             message.channel.send("***tente de vous renvoyez la balle***");
             message.channel.send("*échec de la procédure... renvoi impossible...*");
@@ -253,6 +244,16 @@ function contains(tab, phrase) {
         }
     }
     return false;
+}
+
+function connectSQL(){
+connection.connect(function (err) {
+    if (err) {
+            return console.error('error sur => [CONNEXION BDD]: ' + err.message);
+        }
+
+        console.log('Connected to the MySQL server.');
+    });
 }
 
 client.login(process.env.DISCORD_TOKEN);
