@@ -19,8 +19,15 @@ var Games = ['TFT', 'tft', 'HFF', 'hff'];
 
 client.on('message', (message) =>{
     if(message.content == "ping"){
+        var pingpong = random.int(0,1);
+        if(pingpong == 0) {
+            message.reply('*Dorian 2.0 tente de vous renvoyez la balle* échec de la procédure..., vous avez gagné le set !');
+            //TODO RAJOUTER UNE BDD AVEC COLUMN JOUEUR | WIN | PERDU ET AFFICHER LE SCORE
+        }else {
+            message.reply('*Dorian 2.0 tente de vous renvoyez la balle et fait un smash*, malheureusement, vous avez perdu le set...');
+        }
         message.reply('pong');
-        message.react('<3');
+        
     }
 
     if((message.content.includes('<:logoRed:718372078369243146>') || message.content.includes("<:logo:718366107647344670>")) && message.member.user.username != "Dorian 2.0"){
