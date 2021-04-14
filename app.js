@@ -67,7 +67,7 @@ client.on('message', (message) => {
         message.channel.send('Salut :D')
     }
 
-    if ((message.content.includes('robot') || message.content.includes('Robot')) ||(message.content.includes('bot') || message.content.includes('Bot')) && message.member.user.username !== "Dorian 2.0") {
+    if ((message.content.includes('robot') || message.content.includes('Robot')) ||(message.content.includes('bot') || message.content.includes('Bot')) && !message.author.bot) {
         message.channel.send(`On parle de moi ? Sachez que j\'ai des oreilles partout \:robot:`);
         allFunction.robotDead(message.channel.id, client);
     }
