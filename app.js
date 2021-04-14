@@ -60,6 +60,8 @@ client.on('message', (message) => {
                     let winner = "pour vous";
                     if(realScore > results[0].scoreRobot){
                         winner = "pour vous";
+                    }else if(realScore == results[0].scoreRobot){
+                        winner = "égalité !";
                     }else{
                         winner = "pour moi";
                     }
@@ -94,12 +96,15 @@ client.on('message', (message) => {
                     let scoreRobot = results[0].scoreRobot;
                     let realScore = scoreRobot + 1;
                     let winner = "pour vous";
-                    if(realScore > results[0].scoreRobot){
+                    if(realScore > results[0].scorePlayer){
                         winner = "pour vous";
-                    }else{
+                    }else if(realScore == results[0].scorePlayer){
+                        winner = "égalité !";
+                    }
+                    else{
                         winner = "pour moi";
                     }
-                    message.reply("Le score est de "+realScore+" || "+results[0].scoreRobot+" " +winner);
+                    message.reply("Le score est de "+results[0].scorePlayer+" || "+realScore+" " +winner);
                 }
             });
         }
