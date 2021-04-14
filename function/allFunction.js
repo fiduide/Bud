@@ -41,7 +41,30 @@ async function robotDead(channelid, client) {
     }, rand);
 }
 
+function sendBlague(connection, message){
+    let sql = "SELECT * FROM blagues ORDER BY RAND() LIMIT 1";
+    connection.query(sql, (error, results, fields) => {
+        if (error) {
+            return console.error(error.message);
+        }else{
+            var re = /- /gi;
+            if( results[0].blagues2 != null){
+                let stringFirst = results[0].blagues.replace(re, '\n- ');
+                
+                let stringFirst2 = results[0].blagues2.replace(re, '\n- ');
+                
+                return message.reply(""+stringFirst + stringFirst2);
+            }else{
+                let stringFirst = results[0].blagues.replace(re, '\n- ');
+               
+                return message.reply(stringFirst);
+            }
+        }
+        
+});
+}
 
+exports.sendBlague = sendBlague;
 exports.contains = contains;
 exports.connectSQL = connectSQL;
 exports.robotDead = robotDead;
