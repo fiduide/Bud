@@ -5,7 +5,8 @@ String.prototype.replaceAt = function (index, character) {
 };
 
 function pendu(message, connection, client) {
-    let tabMots = ["panda", "amour", "seigneur"];
+    let tabMots = ["panda", "amour", "seigneur", "informatique", "programmation", "ordinateur", "constitution", "seigneur", 'anticonstitutionnellement', 'rapport', 'examen', 'support', 'dictionnaire', 'chat', 'chien', 'lapin',
+    'message','index', 'pendu', 'initialisation', 'partie', 'variant', 'hiboux'];
     let indexMotSearch = random.int(0, tabMots.length - 1);
     let rechercheDeJeu = "SELECT * FROM pendu WHERE channelId = " + message.channel.id;
     let realMot = "";
