@@ -42,7 +42,7 @@ client.on('message', (message) => {
                 
                 if (results[0] == null) {
                     console.log("je passe dans l'insert");
-                    let sql2 = 'INSERT INTO score_ping(idPlayer,scorePlayer,scoreRobot) VALUES(' + message.member.id + ', 1, 0)';
+                    let sql2 = 'INSERT INTO score_ping(idPlayer,scorePlayer,scoreRobot) VALUES("' + message.member.id + '", 1, 0)';
                     connection.query(sql2);
                     message.reply("Le score est de 1 | 0");
                 } else {
@@ -80,7 +80,7 @@ client.on('message', (message) => {
                 }
                 if (results[0] == null) {
                     console.log("je passe dans l'insert");
-                    let sql2 = 'INSERT INTO score_ping(idPlayer,scorePlayer,scoreRobot) VALUES(' + message.member.id + ', 0, 1)';
+                    let sql2 = 'INSERT INTO score_ping(idPlayer,scorePlayer,scoreRobot) VALUES("' + message.member.id + '", 0, 1)';
                     connection.query(sql2);
                     message.reply("Le score est de 0 | 1 pour moi");
                 } else {
@@ -102,9 +102,6 @@ client.on('message', (message) => {
                     message.reply("Le score est de "+realScore+" || "+results[0].scoreRobot+" " +winner);
                 }
             });
-            connection.query(sql);
-
-            connection.end();
         }
     }
 
