@@ -6,6 +6,7 @@ let mysql = require('mysql');
 
 let pingGame = require('./function/pingGame');
 let randGame = require('./function/randGame');
+let allFunction = require('./function/allFunction');
 
 let connection = mysql.createConnection({
     host: 'mysql-cappe.alwaysdata.net',
@@ -16,7 +17,7 @@ let connection = mysql.createConnection({
 
 
 client.once('ready', () => {
-    connectSQL();
+    allFunction.connectSQL(connection);
     console.log('Ready !')
     client.user.setActivity("En cours de développement !");
     client.channels.cache.get('768366908105293828').send("Bot lancé ! ");
@@ -48,25 +49,25 @@ client.on('message', (message) => {
         message.channel.send(`j'espère que ce n'est pas trop grave \:worried:`);
     }
 
-    if (contains(badGuy, message)) {
+    if (allFunction.contains(badGuy, message)) {
         message.channel.send(`Les gros mots c'est MAL !`);
     }
 
     if (message.content.includes('tft') || message.content.includes('TFT')) {
-        TFTinsulte(message.channel.id);
+        allFunction.TFTinsulte(message.channel.id, badGuy);
     }
 
-    if (contains(Games, message)) {
+    if (allFunction.contains(Games, message)) {
         message.channel.send('HOP HOP HOP On se reconcentre tout de suite là !')
     }
 
-    if (contains(TabHello, message)) {
+    if (allFunction.contains(TabHello, message)) {
         message.channel.send('Salut :D')
     }
 
     if ((message.content.includes('robot') || message.content.includes('Robot')) && message.member.user.username !== "Dorian 2.0") {
         message.channel.send(`On parle de moi ? Sachez que j\'ai des oreilles partout \:robot:`);
-        robotDead(message.channel.id);
+        allFunction.RobotDead(message.channel.id);
     }
     if ((message.content.includes('pardon') || message.content.includes('Pardon') || message.content.includes('désolé') || message.content.includes('Désolé') || message.content.includes('Excuse moi') || message.content.includes('excuse moi')) && message.member.user.username !== "Dorian 2.0") {
         message.channel.send('pas de problème');
@@ -78,28 +79,6 @@ client.on('message', (message) => {
 });
 
 
-async function TFTinsulte(channelid) {
-    console.log(channelid);
-    var rand = random.int(30000, 180000);
-    var randBadGuy = random.int(0, 18);
-    //client.channels.cache.get('717760126706253827').send(rand);
-    client.setTimeout(() => {
-        client.channels.cache.get(channelid).send(badGuy[randBadGuy] + " !");
-        client.channels.cache.get(channelid).send("Oups c'est sorti tout seul dsl !");
-    }, rand);
-}
-
-
-async function robotDead(channelid) {
-    var rand = random.int(300000, 900000);
-    client.setTimeout(() => {
-        client.channels.cache.get(channelid).send("**Dysfonctionnement interne !**");
-        client.channels.cache.get(channelid).send("**Dysfonctionnement interne !**");
-        client.channels.cache.get(channelid).send("** ERREUR ERREUR **");
-        client.channels.cache.get(channelid).send("** ETAT D'URGENCE ACTIVE **");
-        client.channels.cache.get(channelid).send("** VEUILLEZ ME METTRE HORS SERVICE **");
-    }, rand);
-}
 
 
 let hours;
@@ -144,23 +123,5 @@ else if (hours == 18 && min == 0) {
 }
 
 
-function contains(tab, phrase) {
-    for (var i = 0; i < tab.length; i++) {
-        if (phrase.content.includes(tab[i]) && phrase.member.user.username !== "Dorian 2.0") {
-            return true
-        }
-    }
-    return false;
-}
-
-function connectSQL(){
-connection.connect(function (err) {
-    if (err) {
-            return console.error('[CONNEXION BDD]: ' + err.code);
-        }
-
-        console.log('Connected to the MySQL server.');
-    });
-}
 
 client.login(process.env.DISCORD_TOKEN);

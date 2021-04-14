@@ -1,3 +1,4 @@
+const random = require('random');
 function randGame(message) {
         var robot = random.int(0, 100)
         var player = random.int(0, 100)
