@@ -53,11 +53,11 @@ function sendBlague(connection, message){
                 
                 let stringFirst2 = results[0].blagues2.replace(re, '\n- ');
                 
-                return message.reply("Voici une blague stockée dans mon répertoire :\n"+stringFirst + stringFirst2);
+                return message.reply("***Voici une blague stockée dans mon répertoire :***\n"+stringFirst + stringFirst2);
             }else{
                 let stringFirst = results[0].blagues.replace(re, '\n- ');
                
-                return message.reply("Voici une blague stockée dans mon répertoire :\n"+stringFirst);
+                return message.reply("***Voici une blague stockée dans mon répertoire :***\n"+stringFirst);
             }
         }
         
