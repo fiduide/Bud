@@ -4,7 +4,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 let mysql = require('mysql');
 
-let pingGame = require('pingGame.js');
+let pingGame = require('./pingGame');
 
 let connection = mysql.createConnection({
     host: 'mysql-cappe.alwaysdata.net',

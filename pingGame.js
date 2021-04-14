@@ -79,3 +79,5 @@ function launchPingGame(message, connection){
         });
     }
 }
+
+exports.launchPingGame = launchPingGame;
