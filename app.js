@@ -5,7 +5,7 @@ const client = new Discord.Client();
 let mysql = require('mysql');
 
 let connection = mysql.createConnection({
-    host: '91.234.195.123',
+    host: 'cappedorian.fr',
     user: 'c1453962c_root',
     password: 'fiduide161100',
     database: 'c1453962c_discord_bud'
@@ -13,6 +13,7 @@ let connection = mysql.createConnection({
 
 
 client.once('ready', () => {
+    connectSQL();
     console.log('Ready !')
     client.user.setActivity("En cours de développement !");
     client.channels.cache.get('768366908105293828').send("Bot lancé ! ");
@@ -26,7 +27,6 @@ var Games = ['TFT', 'tft', 'HFF', 'hff'];
 
 client.on('message', (message) => {
     if (message.content == "ping") {
-        connectSQL();
         var pingpong = random.int(0, 1);
         if (pingpong == 0) {
             message.channel.send("***tente de vous renvoyez la balle***");
