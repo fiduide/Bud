@@ -97,12 +97,12 @@ client.on('message', (message) => {
                     let realScore = scoreRobot + 1;
                     let winner = "pour vous";
                     if(realScore > results[0].scorePlayer){
-                        winner = "pour vous";
+                        winner = "pour moi";
                     }else if(realScore == results[0].scorePlayer){
                         winner = "égalité !";
                     }
                     else{
-                        winner = "pour moi";
+                        winner = "pour vous";
                     }
                     message.reply("Le score est de "+results[0].scorePlayer+" || "+realScore+" " +winner);
                 }
