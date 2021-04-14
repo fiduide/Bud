@@ -38,7 +38,7 @@ function pendu(message, connection, client) {
         });
     }
 
-    if (message.content.includes("!pendu")) {
+    if (message.content.includes("!pendu") && message.member.user.username != "Dorian 2.0") {
 
         let split = message.content.split(" ");
         
