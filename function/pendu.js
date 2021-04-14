@@ -24,7 +24,7 @@ function pendu(message, connection, client) {
 
                 let buff = "";
 
-                for (let j = 0; j < realMot.length - 1; j++) {
+                for (let j = 0; j < realMot.length; j++) {
                     buff = buff + '-';
                 }
                 motATrouver = buff;
@@ -34,7 +34,7 @@ function pendu(message, connection, client) {
                 message.channel.send("***Le mot à trouver est *** (" + motATrouver + ")");
 
             } else {
-                message.reply("***Pendu déjà en cours le mot est => *** (" + results[0].motATrouver + ")");
+                message.reply("***Pendu déjà en cours le mot est => *** (" + results[0].motATrouver + ")\n- Pour jouer c'est simple, tapé !pendu (lettre/mot)");
             }
         });
     }
