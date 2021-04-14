@@ -5,10 +5,10 @@ const client = new Discord.Client();
 let mysql = require('mysql');
 
 let connection = mysql.createConnection({
-    host: 'cappedorian.fr',
-    user: 'c1453962c_root',
+    host: 'mysql-cappe.alwaysdata.net',
+    user: 'cappe',
     password: 'fiduide161100',
-    database: 'c1453962c_discord_bud'
+    database: 'cappe_discord_bud',
 });
 
 
@@ -28,71 +28,80 @@ var Games = ['TFT', 'tft', 'HFF', 'hff'];
 client.on('message', (message) => {
     if (message.content == "ping") {
         var pingpong = random.int(0, 1);
+
         if (pingpong == 0) {
             message.channel.send("***tente de vous renvoyez la balle***");
             message.channel.send("*échec de la procédure... renvoi impossible...*");
             message.reply("Vous gagnez le match !");
 
-            let sql = 'SELECT * FROM score_ping WHERE idPlayer = ?';
-            console.log(message.member.id);
-            connection.query(sql, [message.member.id], (error, results, fields) => {
+            let sql = 'SELECT * FROM score_ping WHERE idPlayer = '+message.member.id;
+            connection.query(sql, (error, results, fields) => {
                 if (error) {
                     return console.error(error.message);
                 }
-                if (results == nul) {
+                
+                if (results[0] == null) {
+                    console.log("je passe dans l'insert");
                     let sql2 = 'INSERT INTO score_ping(idPlayer,scorePlayer,scoreRobot) VALUES(' + message.member.id + ', 1, 0)';
                     connection.query(sql2);
+                    message.reply("Le score est de 1 | 0");
                 } else {
-                    let sqlInsert = 'UPDATE todos SET scorePlayer = scorePlayer + 1 WHERE idPlayer = ?';
-
-                    let data = [message.member.id];
-
+                    let sqlInsert = 'UPDATE score_ping SET scorePlayer = scorePlayer + 1 WHERE idPlayer = "'+message.member.id+'"';
+                    console.log("je passe dans l'update");
                     // execute the UPDATE statement
-                    connection.query(sqlInsert, data, (error, results, fields) => {
+                    connection.query(sqlInsert, (error, results, fields) => {
                         if (error) {
                             return console.error(error.message);
                         }
                         console.log('Rows affected:', results.affectedRows);
                     });
+                    let scorePlayer = results[0].scorePlayer;
+                    let realScore = scorePlayer + 1;
+                    let winner = "pour vous";
+                    if(realScore > results[0].scoreRobot){
+                        winner = "pour vous";
+                    }else{
+                        winner = "pour moi";
+                    }
+                    message.reply("Le score est de "+realScore+" || "+results[0].scoreRobot+" " +winner);
                 }
-                console.log(results);
-                console.log(fields);
             });
-
-            connection.query(sql);
-
-            connection.end();
+            //connection.query(sql);
             //TODO RAJOUTER UNE BDD AVEC COLUMN JOUEUR | WIN | PERDU ET AFFICHER LE SCORE
         } else {
-            message.channel.send(" ***tente de vous renvoyez la balle et fait un smash***");
+            message.channel.send(" ***tente de vous renvoyez la balle et PONG, il fait un smash***");
             message.reply("malheureusement, vous avez perdu le match...");
 
             
-            let sql = 'SELECT * FROM score_ping WHERE idPlayer = ?';
-            connection.query(sql, [message.member.id], (error, results, fields) => {
+            let sql = 'SELECT * FROM score_ping WHERE idPlayer = '+message.member.id;
+            connection.query(sql, (error, results, fields) => {
                 if (error) {
                     return console.error(error.message);
                 }
-                if (results == nul) {
-                    let sql2 = 'INSERT INTO score_ping(idPlayer,scorePlayer, scoreRobot) VALUES(' + message.member.id + ', 0, 1)';
+                if (results[0] == null) {
+                    console.log("je passe dans l'insert");
+                    let sql2 = 'INSERT INTO score_ping(idPlayer,scorePlayer,scoreRobot) VALUES(' + message.member.id + ', 0, 1)';
                     connection.query(sql2);
+                    message.reply("Le score est de 0 | 1 pour moi");
                 } else {
-                    let sqlInsert = 'UPDATE todos SET scorePlayer = scoreRobot + 1 WHERE idPlayer = ?';
-
-                    let data = [message.member.id];
-
+                    let sqlInsert = 'UPDATE score_ping SET scoreRobot = scoreRobot + 1 WHERE idPlayer = "'+message.member.id+'"';
                     // execute the UPDATE statement
-                    connection.query(sqlInsert, data, (error, results, fields) => {
+                    connection.query(sqlInsert, (error, results, fields) => {
                         if (error) {
                             return console.error(error.message);
                         }
-                        console.log('Rows affected:', results.affectedRows);
                     });
+                    let scoreRobot = results[0].scoreRobot;
+                    let realScore = scoreRobot + 1;
+                    let winner = "pour vous";
+                    if(realScore > results[0].scoreRobot){
+                        winner = "pour vous";
+                    }else{
+                        winner = "pour moi";
+                    }
+                    message.reply("Le score est de "+realScore+" || "+results[0].scoreRobot+" " +winner);
                 }
-                console.log(results);
-                console.log(fields);
             });
-
             connection.query(sql);
 
             connection.end();
@@ -249,7 +258,7 @@ function contains(tab, phrase) {
 function connectSQL(){
 connection.connect(function (err) {
     if (err) {
-            return console.error('error sur => [CONNEXION BDD]: ' + err.message);
+            return console.error('[CONNEXION BDD]: ' + err.code);
         }
 
         console.log('Connected to the MySQL server.');
