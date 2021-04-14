@@ -4,7 +4,8 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 let mysql = require('mysql');
 
-let pingGame = require('./pingGame');
+let pingGame = require('./function/pingGame');
+let randGame = require('./function/randGame');
 
 let connection = mysql.createConnection({
     host: 'mysql-cappe.alwaysdata.net',
@@ -43,7 +44,6 @@ client.on('message', (message) => {
         message.channel.send(attachment);
     }
 
-
     if (message.content.includes('mauvaise nouvelle') || message.content.includes('Mauvaise nouvelle')) {
         message.channel.send(`j'espère que ce n'est pas trop grave \:worried:`);
     }
@@ -73,33 +73,7 @@ client.on('message', (message) => {
     }
 
     if (message.content == "!rand") {
-        var robot = random.int(0, 100)
-        var player = random.int(0, 100)
-        var user = message.author.id;
-
-        message.channel.send("Je tire les nombres veuillez patienter...");
-        setTimeout(() => {
-            message.channel.send("...   ...   ...   ...   ...");
-            setTimeout(() => {
-                message.channel.send(`<@${user}>` + ' ton nombre est : ' + player);
-                setTimeout(() => {
-                    message.channel.send('mon nombre est : ' + robot);
-                }, 2000);
-            }, 3000);
-        }, 5000);
-        if (player > robot) {
-            setTimeout(() => {
-                message.channel.send("Bravo **<@" + message.member.user.id + ">** tu as gagné !");
-            }, 11000);
-        } else {
-            setTimeout(() => {
-                message.channel.send("**MOUAHAHAHAH j'ai gagné, je vais pouvoir envahir le monde maintenant !**");
-            }, 11000);
-            client.user.setActivity("envahir le monde !");
-            client.setTimeout(() => {
-                client.user.setStatus('En développement !');
-            }, 40000);
-        }
+        randGame.randGame(message);
     }
 });
 
