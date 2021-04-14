@@ -18,7 +18,7 @@ function pendu(message, connection, client) {
             }
             if (results[0] == null) {
                 message.channel.send("***Initialisation de la partie... Veuillez patienter.***");
-                message.channel.send("***Les règles sont simple : \n- Au bout de 10 fautes, la partie s'arrête.\n- Vous pouvez essayer des mots directement.\n-!pendu (lettre/mot)***");
+                message.channel.send("***Les règles sont simple : \n- Au bout de 10 fautes, la partie s'arrête.\n- Vous pouvez essayer des mots directement.\n- Pour jouer c'est simple, tapé !pendu (lettre/mot)***");
                 realMot = tabMots[indexMotSearch];
 
                 let buff = "";
