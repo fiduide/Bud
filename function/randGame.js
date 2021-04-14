@@ -1,5 +1,5 @@
 const random = require('random');
-function randGame(message) {
+function randGame(message, client) {
         var robot = random.int(0, 100)
         var player = random.int(0, 100)
         var user = message.author.id;

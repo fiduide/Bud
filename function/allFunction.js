@@ -18,7 +18,7 @@ connection.connect(function (err) {
     });
 }
 
-async function TFTinsulte(channelid, badGuy) {
+async function TFTinsulte(channelid, badGuy, client) {
     console.log(channelid);
     var rand = random.int(30000, 180000);
     var randBadGuy = random.int(0, 18);
@@ -30,7 +30,7 @@ async function TFTinsulte(channelid, badGuy) {
 }
 
 
-async function robotDead(channelid) {
+async function robotDead(channelid, client) {
     var rand = random.int(300000, 900000);
     client.setTimeout(() => {
         client.channels.cache.get(channelid).send("**Dysfonctionnement interne !**");
