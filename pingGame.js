@@ -1,4 +1,4 @@
-function launchPingGame(message){
+function launchPingGame(message, connection){
     var pingpong = random.int(0, 1);
     if (pingpong == 0) {
         message.channel.send("***tente de vous renvoyez la balle***");

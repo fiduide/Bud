@@ -29,7 +29,7 @@ var Games = ['TFT', 'tft', 'HFF', 'hff'];
 
 client.on('message', (message) => {
     if (message.content == "ping") {
-        pingGame.launchPingGame(message);
+        pingGame.launchPingGame(message, connection);
     }
 
     if ((message.content.includes('<:logoRed:718372078369243146>') || message.content.includes("<:logo:718366107647344670>")) && message.member.user.username != "Dorian 2.0") {
