@@ -25,7 +25,6 @@ function launchPingGame(message, connection){
                     if (error) {
                         return console.error(error.message);
                     }
-                    console.log('Rows affected:', results.affectedRows);
                 });
                 let scorePlayer = results[0].scorePlayer;
                 let realScore = scorePlayer + 1;

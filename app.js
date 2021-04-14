@@ -2,11 +2,13 @@ require('dotenv').config();
 const random = require('random');
 const Discord = require('discord.js');
 const client = new Discord.Client();
-let mysql = require('mysql');
+const mysql = require('mysql');
 
-let pingGame = require('./function/pingGame');
-let randGame = require('./function/randGame');
-let allFunction = require('./function/allFunction');
+const pingGame = require('./function/pingGame');
+const randGame = require('./function/randGame');
+const allFunction = require('./function/allFunction');
+const pendu = require('./function/pendu');
+
 
 let connection = mysql.createConnection({
     host: 'mysql-cappe.alwaysdata.net',
@@ -80,52 +82,11 @@ client.on('message', (message) => {
     if(message.content == "!blague"){
         allFunction.sendBlague(connection, message);
     }
+
+    if(message.content == "!startpendu" || message.content.includes("!pendu")){
+        pendu.pendu(message, connection, client);
+    }
 });
-
-
-
-
-let hours;
-let min;
-
-client.setInterval(() => {
-    var now = new Date();
-    hours = now.getHours();
-    min = now.getMinutes();
-}, 60000);
-
-if (hours == 9 && min == 0) {
-    client.channels.cache.get('717760126706253827').send("@here ça commence ! Passez une bonne journée !");
-}
-else if (hours == 10 && min == 30) {
-    client.channels.cache.get('717760126706253827').send("Allez courage, tenez bon !");
-}
-else if (hours == 13 && min == 0) {
-    client.channels.cache.get('717760126706253827').send("LA MATINEE EST TERMINE BON APPETIT A TOUS!");
-}
-else if (hours == 14 && min == 0) {
-    client.channels.cache.get('717760126706253827').send("@here On reprend, courage, vous avez fait déjà la moitié !");
-}
-else if (hours == 15 && min == 0) {
-    client.channels.cache.get('717760126706253827').send("MAINTENEZ LES POSITIONS !!");
-    client.channels.cache.get('717760126706253827').send("PLUS QUE 3 HEURES COURAGE !");
-}
-else if (hours == 16 && min == 0) {
-    client.channels.cache.get('717760126706253827').send("PLUS QUE 2 HEURES COURAGE !");
-}
-else if (hours == 17 && min == 0) {
-    client.channels.cache.get('717760126706253827').send("PLUS QUE 1 HEURE... J'EN PEUX PLUS  \:worried: !");
-}
-else if (hours == 17 && min == 40) {
-    client.channels.cache.get('717760126706253827').send("PLUS QUE 20 MIN COURAGE !");
-}
-else if (hours == 17 && min == 50) {
-    client.channels.cache.get('717760126706253827').send("PLUS QUE 10 MIN COURAGE !");
-}
-else if (hours == 18 && min == 0) {
-    client.channels.cache.get('717760126706253827').send("FINI !!!!");
-}
-
 
 
 client.login(process.env.DISCORD_TOKEN);
