@@ -1,3 +1,5 @@
+const random = require('random');
+
 function launchPingGame(message, connection){
     var pingpong = random.int(0, 1);
     if (pingpong == 0) {
