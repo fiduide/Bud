@@ -14,7 +14,7 @@ function help(message){
         }else if(search =="Rand" || search == "rand"){
             message_two = '\n- !rand pour lancer le jeu RandGame face à Bud ```';
         }else {
-            message_two = "\ncommande indisponnible pour l'instant ! ```";
+            message_two = "\nCommande indisponnible pour l'instant ! ```";
         }
     }
     let sendmessage = message_one + message_two;
