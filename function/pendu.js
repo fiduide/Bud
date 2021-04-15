@@ -40,8 +40,8 @@ function pendu(message, connection, client) {
     }
 
     if (message.content.includes("!pendu") && message.member.user.username != "Dorian 2.0") {
-
-        let split = message.content.split(" ");
+        let doublespace = message.content.replace("  ", " ");
+        let split = doublespace(" ");
         
         let letter = split[1];
         console.log(split);
@@ -66,7 +66,7 @@ function pendu(message, connection, client) {
                         motTemp = motTemp.replaceAt(fromIndex, letter);
                         fromIndex++;
                         fromIndex = results[0].realMot.indexOf(letter, fromIndex);
-                        console.log(motTemp);
+
                     }
                     motATrouver = motTemp;
                     let sqlInsert = 'UPDATE pendu SET motATrouver = "' + motATrouver + '" WHERE channelId = "' + message.channel.id + '"';
