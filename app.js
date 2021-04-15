@@ -86,6 +86,10 @@ client.on('message', (message) => {
     if(message.content == "!startpendu" || message.content.includes("!pendu")){
         pendu.pendu(message, connection, client);
     }
+
+    if(message.content == "!myScorePingGame"){
+        pingGame.myScorePingGame(message, connection);
+    }
 });
 
 

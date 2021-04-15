@@ -81,4 +81,20 @@ function launchPingGame(message, connection){
     }
 }
 
+function myScorePingGame(message, connection){
+    if(message.content == "!myscore"){
+        let myScore = "SELECT scorePlayer FROM score_ping WHERE idPlayer = '"+message.member.id+"'";
+        connection.query(myScore, (error, results, fields) => {
+            if (error) {
+                return console.error(error.message);
+            }else if(results[0] == null){
+                message.reply("Vous n'avez pas encore de score enregistré");
+            }else {
+                message.reply("Votre score est de : " +results[0].scorePlayer);
+            }
+        });
+    }
+}
+
 exports.launchPingGame = launchPingGame;
+exports.myScorePingGame = myScorePingGame;
