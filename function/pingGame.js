@@ -82,7 +82,7 @@ function launchPingGame(message, connection){
 }
 
 function myScorePingGame(message, connection){
-    if(message.content == "!myscore"){
+    if(message.content == "!myScorePingGame"){
         let myScore = "SELECT scorePlayer FROM score_ping WHERE idPlayer = '"+message.member.id+"'";
         connection.query(myScore, (error, results, fields) => {
             if (error) {
