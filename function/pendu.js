@@ -43,7 +43,6 @@ function pendu(message, connection, client) {
         
         let split =  message.content.split(" ");
         let letter = split[1];
-        console.log(split);
         connection.query(rechercheDeJeu, (error, results, fields) => {
             if (error) {
                 return console.error(error.message);
@@ -57,7 +56,6 @@ function pendu(message, connection, client) {
                 let motTemp = motATrouver;
                 let realMot = results[0].realMot;
                 if (letter != ""  && results[0].realMot.indexOf(letter) != -1) {
-                    console.log("Lettre trouvé dans le mot");
                     let fromIndex = results[0].realMot.indexOf(letter);
                     //dans le mot affiche "-----", on remplace le(s) tiret(s) par la lettre
                     //propos�e, � l'endroit ad�quat
