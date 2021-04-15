@@ -8,6 +8,7 @@ const pingGame = require('./function/pingGame');
 const randGame = require('./function/randGame');
 const allFunction = require('./function/allFunction');
 const pendu = require('./function/pendu');
+const help = require('./function/help');
 
 
 let connection = mysql.createConnection({
@@ -89,6 +90,10 @@ client.on('message', (message) => {
 
     if(message.content == "!myScorePingGame"){
         pingGame.myScorePingGame(message, connection);
+    }
+
+    if(message.content.startsWith("!help")){
+        help.help(message);
     }
 });
 

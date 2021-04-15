@@ -4,10 +4,15 @@ String.prototype.replaceAt = function (index, character) {
     return this.substr(0, index) + character + this.substr(index + character.length);
 };
 
+let lastIndex = 0;
+
 function pendu(message, connection, client) {
     let tabMots = ["panda", "amour", "seigneur", "informatique", "programmation", "ordinateur", "constitution", "seigneur", 'anticonstitutionnellement', 'rapport', 'examen', 'support', 'dictionnaire', 'chat', 'chien', 'lapin',
     'message','index', 'pendu', 'initialisation', 'partie', 'variant', 'hiboux'];
     let indexMotSearch = random.int(0, tabMots.length - 1);
+    if(indexMotSearch != lastIndex){
+        indexMotSearch = random.int(0, tabMots.length - 1);
+    }
     let rechercheDeJeu = "SELECT * FROM pendu WHERE channelId = " + message.channel.id;
     let realMot = "";
     let motATrouver = "";
