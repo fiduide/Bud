@@ -41,7 +41,7 @@ function pendu(message, connection, client) {
 
     if (message.content.includes("!pendu") && message.member.user.username != "Dorian 2.0") {
         let doublespace = message.content.replace("  ", " ");
-        let split = doublespace(" ");
+        let split = doublespace.split(" ");
         
         let letter = split[1];
         console.log(split);
