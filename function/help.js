@@ -5,7 +5,7 @@ function help(message){
     message.channel.send("**La liste des commandes : **");
     let message_one = "```";
     if(search == null){
-        message_two ='\n- !help [game] pour obtenir des informations sur les commandes du [game]\n- !blague pour que Bud vous lance une blague parfois pas très drôle ou incompréhensible...\n- en cours d\'écriture ```';
+        message_two ='\n- !help [game] pour obtenir des informations sur les commandes du [game]\n- !blague pour que Bud vous lance une blague parfois pas très drôle ou incompréhensible...\n- en cours d\'écriture\n- !Bud (à découvrir)\n```';
     }else if(search != ""){
         if(search == "PingGame" || search == "pingGame"){
             message_two = '\n- !ping pour lancer la balle à Bud et tenter d\'augmenter votre score\n- !myScorePingGame pour obtenir votre score```';
