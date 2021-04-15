@@ -95,6 +95,9 @@ client.on('message', (message) => {
     if(message.content.startsWith("!help")){
         help.help(message);
     }
+    if(message.content.startsWith("!bud") || message.content.startsWith("!Bud")){
+        message.channel.send("Toujours présent pour vous servir :D");
+    }
 });
 
 
