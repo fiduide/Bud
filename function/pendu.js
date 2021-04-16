@@ -85,7 +85,9 @@ function pendu(message, connection, client) {
             }else{
                 message.reply("Le pendu actuel a bien été supprimé");
             }
-    }
+    });
+}
+
 
     if (message.content.includes("!pendu") && message.member.user.username != "Dorian 2.0") {
         
