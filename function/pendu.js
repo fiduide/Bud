@@ -77,8 +77,8 @@ function pendu(message, connection, client) {
         });
     }
 
-    if(message.content.startsWith("!delpendu")){
-        let delPendu = 'UPDELETE FROM pendu WHERE channelId = "' + message.channel.id + '"';
+    if(message.content.startsWith("!killPendu")){
+        let delPendu = 'DELETE FROM pendu WHERE channelId = "' + message.channel.id + '"';
         connection.query(delPendu, (error, results, fields) => {
             if (error) {
                 return console.error(error.message);
