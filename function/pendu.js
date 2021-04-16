@@ -35,22 +35,9 @@ function pendu(message, connection, client) {
                     realMot = motEnvoyer;
     
                     let buff = "";
-                    let indexPourTrait = null;
-
-                    if(realMot.includes("-")){
-                        indexPourTrait = realMot.indexOf("-");
-                    }
     
                     for (let j = 0; j < realMot.length; j++) {
-                        if(indexPourTrait == null){
                             buff = buff + '-';
-                        }else{
-                            if(j == indexPourTrait){
-                                buff = buff + ' - ';
-                            }else{
-                                buff = buff + '-';
-                            }
-                        }
                     }
                     motATrouver = buff;
     
