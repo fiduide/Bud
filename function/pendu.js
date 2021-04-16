@@ -37,7 +37,7 @@ function pendu(message, connection, client) {
                     let buff = "";
                     let indexPourTrait = null;
 
-                    if(realMot.contains("-")){
+                    if(realMot.includes("-")){
                         indexPourTrait = realMot.indexOf("-");
                     }
     
