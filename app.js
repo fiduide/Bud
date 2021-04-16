@@ -84,7 +84,7 @@ client.on('message', (message) => {
         allFunction.sendBlague(connection, message);
     }
 
-    if(message.content == "!startpendu" || message.content.includes("!pendu")){
+    if(message.content == "!startpendu" || message.content.startsWith("!pendu") || message.content.startsWith("!createPendu")){
         pendu.pendu(message, connection, client);
     }
 

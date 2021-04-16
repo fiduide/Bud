@@ -17,7 +17,40 @@ function pendu(message, connection, client) {
     let realMot = "";
     let motATrouver = "";
 
-    if (message.content == "!startpendu") {
+    if(message.content.startsWith("!createPendu")){
+        let commande = message.content.split(" ");
+        let motEnvoyer = commande[1];
+
+        if(motEnvoyer == ""){
+            message.reply("Veuillez réessayer avec un mot exacte s'il vous plaît");
+        }else {
+            message.delete();
+            connection.query(rechercheDeJeu, (error, results, fields) => {
+                if (error) {
+                    return console.error(error.message);
+                }
+                if (results[0] == null) {
+                    message.channel.send("***Initialisation de la partie... Veuillez patienter.***");
+                    message.channel.send("***Les règles sont simple : \n- Tout le monde peut y participer.\n- Au bout de 10 fautes, la partie s'arrête.\n- Vous pouvez essayer des mots directement.\n- Pour jouer c'est simple, tapé !pendu (lettre/mot)***");
+                    realMot = motEnvoyer;
+    
+                    let buff = "";
+    
+                    for (let j = 0; j < realMot.length; j++) {
+                        buff = buff + '-';
+                    }
+                    motATrouver = buff;
+    
+                    let creaMot = "INSERT INTO pendu VALUES('" + realMot + "','" + motATrouver + "', 0, '" + message.channel.id + "')";
+                    connection.query(creaMot);
+                    message.channel.send("***Le mot à trouver est *** (" + motATrouver + ")");
+    
+                } else {
+                    message.reply("***Pendu déjà en cours le mot est => *** (" + results[0].motATrouver + ")\n- Pour jouer c'est simple, tapé !pendu (lettre/mot)");
+                }
+            });
+        }
+    }else if(message.content == "!startpendu") {
         connection.query(rechercheDeJeu, (error, results, fields) => {
             if (error) {
                 return console.error(error.message);
@@ -119,6 +152,5 @@ function pendu(message, connection, client) {
         });
     }
 }
-
 
 exports.pendu = pendu;
