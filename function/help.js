@@ -10,7 +10,7 @@ function help(message){
         if(search == "PingGame" || search == "pingGame"){
             message_two = '\n- !ping pour lancer la balle à Bud et tenter d\'augmenter votre score\n- !myScorePingGame pour obtenir votre score```';
         }else if(search == "Pendu" || search == "pendu"){
-            message_two = '\n- !pendu [lettre/mot] pour tenter de trouver le mot du pendu\n- !startpendu pour initialiser une partie de pendu avec Bud ```';
+            message_two = '\n- !pendu [lettre/mot] pour tenter de trouver le mot du pendu\n- !startpendu pour initialiser une partie de pendu avec Bud\n - !createPendu mot pour créer un pendu personnalisé.\n - !delpendu pour supprimer le pendu actuel.\n  ```';
         }else if(search =="Rand" || search == "rand"){
             message_two = '\n- !rand pour lancer le jeu RandGame face à Bud ```';
         }else {
